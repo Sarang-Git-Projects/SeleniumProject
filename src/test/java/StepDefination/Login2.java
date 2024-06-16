@@ -92,7 +92,6 @@ public class Login2 {
 	{
 		File file =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	    FileHandler.copy(file, new File("C:/Users/saran/eclipse-workspace/SeleniumProject/target/ScreenShots/"+name+".jpg"));
-
 	}
 	
 	
