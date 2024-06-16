@@ -3,12 +3,18 @@ package StepDefination;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,6 +27,7 @@ import io.cucumber.java.en.When;
 
 public class Login2 {
 	
+	WebDriver driver = new ChromeDriver();
 	
 //	@Test(dataProvider="CredentialSupplier")
 //	public void LoginTest(String username, String password)
@@ -81,14 +88,21 @@ public class Login2 {
 	//return data;
 	}
 
-	
+	public void takeScreenshot(String name) throws IOException
+	{
+		File file =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	    FileHandler.copy(file, new File("C:/Users/saran/eclipse-workspace/SeleniumProject/target/ScreenShots/"+name+".jpg"));
+
+	}
 	
 	
 	
 	@Given("the username and password to login")
 	public void the_username_and_password_to_login() throws IOException {
-	    
-	}
+		driver.navigate().to("https://www.google.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		takeScreenshot("login Page 2");
+	    	}
 		
 
 	@And("processed with submit button")
