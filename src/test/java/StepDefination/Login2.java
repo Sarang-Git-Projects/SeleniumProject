@@ -15,6 +15,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -25,9 +26,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class Login2 {
+public class Login2 extends TestRunner{
 	
-	WebDriver driver = new ChromeDriver();
+	//	WebDriver driver = new ChromeDriver();
 	
 //	@Test(dataProvider="CredentialSupplier")
 //	public void LoginTest(String username, String password)
@@ -94,6 +95,19 @@ public class Login2 {
 	    FileHandler.copy(file, new File("C:/Users/saran/eclipse-workspace/SeleniumProject/target/ScreenShots/"+name+".jpg"));
 	}
 	
+	
+
+	@Given("the {string} and {string} to login")
+	public void the_and_to_login(String string, String string2) throws IOException {
+	    
+		driver.navigate().to("https://www.gmail.com/");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		takeScreenshot("login Page 2");
+	//	PageFactory.initElements(driver, LoginPage.class)
+	}
+
+
+
 	
 	
 	@Given("the username and password to login")
